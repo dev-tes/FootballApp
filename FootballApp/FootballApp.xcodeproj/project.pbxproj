@@ -124,17 +124,14 @@
 		04E1754F27634FBE001E0D5E /* FootballApp */ = {
 			isa = PBXGroup;
 			children = (
+				04E175922763D27E001E0D5E /* Persistence */,
+				04E175912763D244001E0D5E /* ViewControllers */,
 				04E1758D27639C19001E0D5E /* ViewModel */,
 				04E1758C27639C10001E0D5E /* View */,
 				04E1758B27639C07001E0D5E /* Model */,
-				04E1755027634FBE001E0D5E /* AppDelegate.swift */,
-				04E1755227634FBE001E0D5E /* SceneDelegate.swift */,
-				04E1755427634FBE001E0D5E /* CompetitionViewController.swift */,
-				04E1755627634FBE001E0D5E /* Main.storyboard */,
+				04E175902763D22B001E0D5E /* Delegates */,
 				04E1755C27634FC0001E0D5E /* Assets.xcassets */,
-				04E1755E27634FC0001E0D5E /* LaunchScreen.storyboard */,
 				04E1756127634FC0001E0D5E /* Info.plist */,
-				04E1755927634FBE001E0D5E /* FootballApp.xcdatamodeld */,
 			);
 			path = FootballApp;
 			sourceTree = "<group>";
@@ -168,6 +165,8 @@
 		04E1758C27639C10001E0D5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04E1755627634FBE001E0D5E /* Main.storyboard */,
+				04E1755E27634FC0001E0D5E /* LaunchScreen.storyboard */,
 				04E1758E2763D085001E0D5E /* CompetetionCollectionViewCell.swift */,
 			);
 			path = View;
@@ -178,6 +177,31 @@
 			children = (
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		04E175902763D22B001E0D5E /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				04E1755027634FBE001E0D5E /* AppDelegate.swift */,
+				04E1755227634FBE001E0D5E /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		04E175912763D244001E0D5E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				04E1755427634FBE001E0D5E /* CompetitionViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		04E175922763D27E001E0D5E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				04E1755927634FBE001E0D5E /* FootballApp.xcdatamodeld */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		EC7A501572CDF6FC33F82B13 /* Frameworks */ = {
