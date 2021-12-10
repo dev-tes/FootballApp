@@ -13,7 +13,9 @@ class CompetitionViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.collectionView?.isPagingEnabled = true
-        layout.minimumLineSpacing = 20
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
+        layout.itemSize = CGSize(width: (view.frame.size.width/3) - 4, height: (view.frame.size.width/3) - 4)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -22,7 +24,6 @@ class CompetitionViewController: UIViewController {
         collectionView.register(CompetetionCollectionViewCell.self, forCellWithReuseIdentifier: CompetetionCollectionViewCell.identifier)
         collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         collectionView.frame = view.bounds
         collectionView.backgroundColor = .green
         return collectionView
