@@ -66,32 +66,4 @@ class LeagueCollectionViewCell: UICollectionViewCell {
             }.resume()
         }
     }
-//    
-//    func setUp(with model: String) {
-//        let image = try? model.asUrl
-////        imageView.kf.setImage(with: image)
-//    }
-//    
-//    func configure(with urlString: String){
-//        guard let url = URL(string: urlString) else {
-//            return
-//            
-//        }
-//        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-//            guard let data = data , error == nil else {
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                print(data)
-//                
-//                guard let image: SVGKImage = SVGKImage(contentsOf: url) else {
-//                    return
-//                }
-//                self?.imageView.image = image.uiImage
-//                guard let img  = UIImage(data: data) else { return }
-//                self?.imageView.image = img
-//                
-//            }
-//        }.resume()
-//    }
 }

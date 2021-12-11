@@ -11,7 +11,6 @@
 		04E1755327634FBE001E0D5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1755227634FBE001E0D5E /* SceneDelegate.swift */; };
 		04E1755527634FBE001E0D5E /* CompetitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1755427634FBE001E0D5E /* CompetitionViewController.swift */; };
 		04E1755827634FBE001E0D5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E1755627634FBE001E0D5E /* Main.storyboard */; };
-		04E1755B27634FBE001E0D5E /* FootballApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04E1755927634FBE001E0D5E /* FootballApp.xcdatamodeld */; };
 		04E1755D27634FC0001E0D5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E1755C27634FC0001E0D5E /* Assets.xcassets */; };
 		04E1756027634FC0001E0D5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E1755E27634FC0001E0D5E /* LaunchScreen.storyboard */; };
 		04E1756B27634FC1001E0D5E /* FootballAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E1756A27634FC1001E0D5E /* FootballAppTests.swift */; };
@@ -61,7 +60,6 @@
 		04E1755227634FBE001E0D5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04E1755427634FBE001E0D5E /* CompetitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionViewController.swift; sourceTree = "<group>"; };
 		04E1755727634FBE001E0D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		04E1755A27634FBE001E0D5E /* FootballApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootballApp.xcdatamodel; sourceTree = "<group>"; };
 		04E1755C27634FC0001E0D5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04E1755F27634FC0001E0D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04E1756127634FC0001E0D5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 		04E175922763D27E001E0D5E /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				04E1755927634FBE001E0D5E /* FootballApp.xcdatamodeld */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -533,7 +530,6 @@
 				04E175AD27646C25001E0D5E /* CompetitionViewModel.swift in Sources */,
 				04E175B52764DA80001E0D5E /* LeagueCollectionViewCell.swift in Sources */,
 				04E1758A27636A93001E0D5E /* FootballCompetition+CoreDataProperties.swift in Sources */,
-				04E1755B27634FBE001E0D5E /* FootballApp.xcdatamodeld in Sources */,
 				04E1755527634FBE001E0D5E /* CompetitionViewController.swift in Sources */,
 				04E1758927636A93001E0D5E /* FootballCompetition+CoreDataClass.swift in Sources */,
 				04E175AB27646B77001E0D5E /* Competition.swift in Sources */,
@@ -918,19 +914,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		04E1755927634FBE001E0D5E /* FootballApp.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				04E1755A27634FBE001E0D5E /* FootballApp.xcdatamodel */,
-			);
-			currentVersion = 04E1755A27634FBE001E0D5E /* FootballApp.xcdatamodel */;
-			path = FootballApp.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 04E1754527634FBE001E0D5E /* Project object */;
 }

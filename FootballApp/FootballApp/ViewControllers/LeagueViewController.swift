@@ -11,8 +11,6 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    //        var items: [LeagueModel] = []
-    
     var leagueData: League?
     var leagueArray: [Team]?
     
@@ -50,6 +48,7 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
         setConstraint()
 //        getAllItems()
         populateCompetitionCollectionView()
+        navigationController?.navigationBar.isHidden = true
     }
     
     func populateCompetitionCollectionView() {
@@ -128,4 +127,12 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.layer.cornerRadius = cell.frame.size.height/2
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == collectionView {
+            let newVc = TeamViewController()
+            navigationController?.pushViewController(newVc, animated: true)
+        }
+    }
+    
 }
