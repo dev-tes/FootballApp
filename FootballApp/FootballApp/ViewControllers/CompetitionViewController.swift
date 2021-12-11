@@ -21,7 +21,7 @@ class CompetitionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(CompetetionCollectionViewCell.self, forCellWithReuseIdentifier: CompetetionCollectionViewCell.identifier)
+        collectionView.register(CompetitionCollectionViewCell.self, forCellWithReuseIdentifier: CompetitionCollectionViewCell.identifier)
         collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.frame = view.bounds
@@ -49,7 +49,7 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompetetionCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompetitionCollectionViewCell.identifier, for: indexPath)
         return cell
     }
     

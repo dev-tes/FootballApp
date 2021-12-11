@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CompetetionCollectionViewCell: UICollectionViewCell {
-    static let identifier = "CompetetionCollectionViewCell"
+class CompetitionCollectionViewCell: UICollectionViewCell {
+    static let identifier = "CompetitionCollectionViewCell"
     
     let leagueNameLabel: UILabel = {
         let label = UILabel()
