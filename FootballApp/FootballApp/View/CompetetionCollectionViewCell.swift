@@ -50,7 +50,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemRed
+        contentView.backgroundColor = .white
         constraintViews()
     }
     

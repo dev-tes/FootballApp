@@ -18,6 +18,10 @@ struct NetworkService {
         request(route: .competition, method: .get, completion: completion)
     }
     
+    func getTeamEmblem(completion: @escaping(Result<League, Error>)-> Void) {
+        request(route: .teams, method: .get, completion: completion)
+    }
+    
     private func request<T: Decodable>(route: Route,
                                        method: Method,
                                        parameters: [String: Any]? = nil,
