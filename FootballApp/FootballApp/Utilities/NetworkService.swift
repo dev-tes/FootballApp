@@ -8,10 +8,15 @@
 import Foundation
 
 struct NetworkService {
+    let apiKey = "7ff07fd5ead743c7ab0ee7318d2ec3a3"
     
     static let shared = NetworkService()
     private init() {}
     
+    
+    func getAllCompetitions(completion: @escaping(Result<CompetitionResponse, Error>) -> Void) {
+        request(route: .competition, method: .get, completion: completion)
+    }
     
     private func request<T: Decodable>(route: Route,
                                        method: Method,
@@ -67,9 +72,9 @@ struct NetworkService {
         let urlString = Route.baseUrl + route.description
         guard let url = urlString.asUrl else { return nil }
         var urlRequest = URLRequest(url: url)
+        urlRequest.addValue(apiKey, forHTTPHeaderField: "X-Auth-Token")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        
-        
         
         urlRequest.httpMethod = method.rawValue
         

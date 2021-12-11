@@ -9,6 +9,11 @@ import UIKit
 
 class CompetitionViewController: UIViewController {
     
+    var allCars: CompetitionResponse?
+    var cars: [Compete]?
+    
+    var competitionViewModel = [CompetitionViewModel]()
+    
     lazy var brandCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -34,6 +39,7 @@ class CompetitionViewController: UIViewController {
         view.backgroundColor = .red
         title = "Competitions"
         addDefaultViews()
+        populateCompetitionCollectionView()
     }
     
     // MARK: - SETUP VIEWS FUNCTION
@@ -44,12 +50,42 @@ class CompetitionViewController: UIViewController {
 
 extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func populateCompetitionCollectionView() {
+        NetworkService.shared.getAllCompetitions(completion: { [weak self] result in
+            
+            switch result {
+            case .success(let data):
+                
+                self?.allCars = data
+                self?.cars = self?.allCars?.competitions
+                
+                self?.competitionViewModel = (self?.cars?.compactMap({
+                    CompetitionViewModel(
+                        id: $0.id,
+                        leagueName: $0.name,
+                        country: $0.area.name,
+                        date: $0.currentSeason?.startDate ?? " "
+                    )}))!
+                
+                self?.brandCollectionView.reloadData()
+            
+            case .failure(let error):
+                print("The error: \(error.localizedDescription)")
+            }
+            
+//            DispatchQueue.main.async {
+//                self?.brandCollectionView.reloadData()
+//            }
+        
+        })}
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return competitionViewModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompetitionCollectionViewCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompetitionCollectionViewCell.identifier, for: indexPath) as? CompetitionCollectionViewCell else { return UICollectionViewCell() }
+        cell.configure(with: competitionViewModel[indexPath.row])
         return cell
     }
     

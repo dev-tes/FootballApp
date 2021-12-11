@@ -8,7 +8,7 @@
 import Foundation
 
 enum Route {
-    static let baseUrl = "http://api.football-data.org/v2/"
+    static let baseUrl = "https://api.football-data.org/v2/"
     
     case competition
     case teams
