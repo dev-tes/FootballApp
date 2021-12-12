@@ -227,7 +227,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         populateViews()
     }
     
-    // MARK: Back arrow button function
+    // MARK: Backward navigation function
     @objc func didTapTopBackArrowButton() {
         navigationController?.popViewController(animated: true)
     }

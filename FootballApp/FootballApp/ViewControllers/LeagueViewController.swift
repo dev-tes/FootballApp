@@ -9,6 +9,7 @@ import UIKit
 
 class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // MARK: properties
     var leagueData: League?
     var leagueArray: [Team]?
     var leagueViewModel = [LeagueViewModel]()
@@ -35,6 +36,7 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     var leagueCollectionView: UICollectionView?
     
+    // MARK: View Lifecycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +46,8 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
         populateCompetitionCollectionView()
         navigationController?.navigationBar.isHidden = true
     }
+    
+    // MARK: Backward navigation function
     @objc func didTapTopBackArrowButton() {
         navigationController?.popViewController(animated: true)
     }

@@ -9,6 +9,8 @@ import UIKit
 import SVGKit
 
 extension TeamDetailViewController{
+    
+    // MARK: Displays views
     func addSubViews(){
         topView.addSubview(topBackArrowButton)
         topView.addSubview(titleLabel)
@@ -122,6 +124,7 @@ extension TeamDetailViewController{
         ])
     }
     
+    // MARK: table view stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return squad?.count ?? 7
     }
@@ -136,6 +139,8 @@ extension TeamDetailViewController{
         }
         return cell
     }
+    
+    // MARK: Configures views
     func populateViews() {
         NetworkService.shared.getTeamDetails(completion: { [weak self] result in
             

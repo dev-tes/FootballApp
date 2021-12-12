@@ -11,6 +11,29 @@ import CoreData
 
 extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - SETUP VIEWS FUNCTION
+    func addDefaultViews() {
+        view.addSubview(brandCollectionView)
+        view.addSubview(titleLabel)
+        view.addSubview(firstView)
+        constraintCollectionView()
+    }
+    
+    // MARK: constraints
+    func constraintCollectionView() {
+        
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        firstView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        firstView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        firstView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        firstView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        brandCollectionView.anchorWithConstantsToTop(top: firstView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
+    }
+    
+    // MARK: fetch data from persistence
     func fetchPersistedData() {
         do {
             self.persistedData = try context?.fetch(FootballApp.fetchRequest())
@@ -23,6 +46,7 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    // MARK: Configures collectionview
     func populateCompetitionCollectionView() {
         NetworkService.shared.getAllCompetitions(completion: { [weak self] result in
             
@@ -78,6 +102,7 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
             }
         })}
     
+    // MARK: Collection view stubs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return competitionViewModel.count
     }

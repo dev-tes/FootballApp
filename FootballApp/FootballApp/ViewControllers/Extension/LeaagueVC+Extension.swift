@@ -9,7 +9,7 @@ import UIKit
 import SVGKit
 
 extension LeagueViewController{
-    
+    // MARK: Configures collection view
     func populateCompetitionCollectionView() {
         NetworkService.shared.getTeamEmblem(completion: { [weak self] result in
             
@@ -32,6 +32,7 @@ extension LeagueViewController{
             }
         })}
     
+    // MARK: Display methods
     func setupCollectionView() {
         
         let layout = UICollectionViewFlowLayout()
@@ -69,7 +70,7 @@ extension LeagueViewController{
         
     }
     
-    
+    // MARK: Collection view stubs
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return leagueViewModel.count
     }
