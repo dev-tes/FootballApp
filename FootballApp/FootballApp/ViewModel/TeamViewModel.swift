@@ -15,10 +15,7 @@ class TeamViewModel{
     let email: String
     let founded: Int
     let clubColors, venue: String
-    
-    let playerName, position: String
-    let dateOfBirth: String
-    let countryOfBirth, nationality: String
+    var imageData: Data? = nil
 
     init(name: String,
          shortName: String,
@@ -30,12 +27,7 @@ class TeamViewModel{
          email: String,
          founded: Int,
          clubColors: String,
-         venue: String,
-         playerName: String,
-         position: String,
-         dateOfBirth: String,
-         countryOfBirth:String,
-         nationality: String
+         venue: String
     ){
         self.name = name
         self.shortName = shortName
@@ -48,13 +40,29 @@ class TeamViewModel{
         self.founded = founded
         self.clubColors = clubColors
         self.venue = venue
-        self.playerName = playerName
+    }
+}
+
+class playerViewModel{
+    
+    let playerName, position: String
+    let dateOfBirth: String
+    let countryOfBirth, nationality: String
+    
+    init(
+        playerName: String,
+        position: String,
+        dateOfBirth: String,
+        countryOfBirth:String,
+        nationality: String
+    ){
+    
+    self.playerName = playerName
         self.position = position
         self.dateOfBirth = dateOfBirth
         self.countryOfBirth = countryOfBirth
         self.nationality = nationality
     }
-    
     
 }
 

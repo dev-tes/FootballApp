@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import SVGKit
 
 class TeamDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var leagueData: League?
-    var leagueArray: [Team]?
+    var clubDetails: APIResponse?
+    var playersDetaails: [Squad]?
     
-    var leagueViewModel = [LeagueViewModel]()
+    var teamViewModel: TeamViewModel?
+    
+    var arrayOfResponse: [APIResponse]?
+    
+    var urlString = " "
     
     private let topBackArrowButton: UIButton = {
         let button = UIButton()
@@ -34,7 +39,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         return label
     }()
     
-    private let imageView: UIImageView = {
+    let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "house")
         imageView.backgroundColor = .systemRed
@@ -48,7 +53,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
         label.textColor = .white
-//        label.textAlignment = .center
+        //        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -132,7 +137,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     }()
     private let foundedAnswerLabel: UILabel = {
         let label = UILabel()
-        label.text = "01 May 2021"
+        label.text = "2021"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
         label.textColor = .white
@@ -221,7 +226,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         table.estimatedRowHeight = 80
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
@@ -231,7 +236,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         navigationController?.navigationBar.isHidden = true
         
         
-
+        
         constraintViews()
         populateViews()
     }
@@ -242,21 +247,50 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
             switch result {
             case .success(let data):
                 
-//                self?.allCars = data
-//                self?.cars = self?.allCars?.competitions
-//
-//                self?.competitionViewModel = (self?.cars?.compactMap({
-//                    CompetitionViewModel(
-//                        id: $0.id,
-//                        leagueName: $0.name,
-//                        country: $0.area.name,
-//                        date: $0.currentSeason?.startDate ?? " "
-//                    )}))!
-//
-//                self?.brandCollectionView.reloadData()
+                self?.clubDetails = data
                 
-                print(data)
-            
+                print(self?.clubDetails?.name)
+                print(self?.arrayOfResponse)
+                
+                TeamViewModel(
+                    name : self?.clubDetails?.name ?? "Arsenal",
+                    shortName : self?.clubDetails?.shortName ?? "M'gladbach",
+                    tla : self?.clubDetails?.tla ?? "Arsenal",
+                    crestURL : self?.clubDetails?.crestURL ?? "Arsenal",
+                    address :  self?.clubDetails?.address ?? "London",
+                    phone :  self?.clubDetails?.phone ?? "+234 9000000000",
+                    website : self?.clubDetails?.website ?? "arsenal.com",
+                    email : self?.clubDetails?.email ?? "arsenal@gmail.com",
+                    founded : self?.clubDetails?.founded ?? 2002,
+                    clubColors : self?.clubDetails?.clubColors ?? "white/red",
+                    venue : self?.clubDetails?.venue ?? "London"
+                )
+                
+                print(self?.teamViewModel?.name)
+                
+                self?.foundedAnswerLabel.text = String(self?.clubDetails?.founded ?? 2002)
+                self?.nickAnswerLabel.text = self?.clubDetails?.shortName ?? "2002"
+                self?.addressAnswerLabel.text = self?.clubDetails?.address ?? "2002"
+                self?.phoneAnswerLabel.text = self?.clubDetails?.phone ?? "2002"
+                self?.webAnswerLabel.text = self?.clubDetails?.website ?? "2002"
+                self?.mailAnswerLabel.text = self?.clubDetails?.email ?? "2002"
+                self?.colorAnswerLabel.text = self?.clubDetails?.clubColors ?? "2002"
+                
+                self?.urlString = self?.clubDetails?.crestURL ?? "https://crests.football-data.org/57.svg"
+                let url = URL(string: self?.urlString ?? "https://crests.football-data.org/57.svg")
+                URLSession.shared.dataTask(with: url!) { data, _, error in
+                    guard let data = data, error == nil else { return}
+                    self?.teamViewModel?.imageData = data
+                    DispatchQueue.main.async {
+                        guard let image: SVGKImage = SVGKImage(contentsOf: url) else {
+                            return
+                        }
+                        self?.imageView.image = image.uiImage
+                        guard let img  = UIImage(data: data) else { return }
+                        self?.imageView.image = img
+                    }
+                }.resume()
+                
             case .failure(let error):
                 print("The error: \(error.localizedDescription)")
             }
@@ -299,7 +333,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 20),
-                    
+            
             clubDetailsLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
             clubDetailsLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor),
             
@@ -365,7 +399,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
             playersTableView.topAnchor.constraint(equalTo: teamPlayersLabel.bottomAnchor, constant: 10),
             playersTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             playersTableView.widthAnchor.constraint(equalTo: firstView.widthAnchor),
-//            playersTableView.heightAnchor.constraint(equalTo: firstView.heightAnchor, constant: 50),
             playersTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
@@ -384,12 +417,9 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.identifier, for: indexPath)
         cell.backgroundColor = .black
-//        cell.heightAnchor.constraint(equalToConstant: 150).isActive = true
         cell.layer.borderWidth = 1
-//        cell.clipsToBounds = true
         cell.layer.cornerRadius = 10
-//        cell.layer.masksToBounds = true
         return cell
     }
-
+    
 }
