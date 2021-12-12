@@ -92,8 +92,7 @@ struct APIResponse: Codable {
 
 // MARK: - Squad
 struct Squad: Codable {
-    let id: Int
     let name, position: String
     let dateOfBirth: String
-    let countryOfBirth, nationality, role: String
+    let countryOfBirth, nationality : String
 }

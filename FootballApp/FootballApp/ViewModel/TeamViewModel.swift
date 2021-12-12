@@ -8,16 +8,51 @@
 import Foundation
 class TeamViewModel{
     
-    let id: Int
-    let leagueName: String
-    let country: String
-    let date: String
+    let name, shortName, tla: String
+    let crestURL: String
+    let address, phone: String
+    let website: String
+    let email: String
+    let founded: Int
+    let clubColors, venue: String
+    
+    let playerName, position: String
+    let dateOfBirth: String
+    let countryOfBirth, nationality: String
 
-    init(id: Int,leagueName: String, country: String,date: String){
-        self.id = id
-        self.leagueName = leagueName
-        self.country = country
-        self.date = date
+    init(name: String,
+         shortName: String,
+         tla: String,
+         crestURL: String,
+         address: String,
+         phone: String,
+         website: String,
+         email: String,
+         founded: Int,
+         clubColors: String,
+         venue: String,
+         playerName: String,
+         position: String,
+         dateOfBirth: String,
+         countryOfBirth:String,
+         nationality: String
+    ){
+        self.name = name
+        self.shortName = shortName
+        self.tla = tla
+        self.crestURL = crestURL
+        self.address = address
+        self.phone = phone
+        self.website = website
+        self.email = email
+        self.founded = founded
+        self.clubColors = clubColors
+        self.venue = venue
+        self.playerName = playerName
+        self.position = position
+        self.dateOfBirth = dateOfBirth
+        self.countryOfBirth = countryOfBirth
+        self.nationality = nationality
     }
     
     
