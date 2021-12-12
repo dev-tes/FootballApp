@@ -36,6 +36,9 @@
 		04E175C92765E8F5001E0D5E /* FootballApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04E175C72765E8F4001E0D5E /* FootballApp.xcdatamodeld */; };
 		04E175D02765EBCB001E0D5E /* FootballApp+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E175CE2765EBCB001E0D5E /* FootballApp+CoreDataClass.swift */; };
 		04E175D12765EBCB001E0D5E /* FootballApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E175CF2765EBCB001E0D5E /* FootballApp+CoreDataProperties.swift */; };
+		04E175D627661BEA001E0D5E /* TeamVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E175D527661BEA001E0D5E /* TeamVC+Extension.swift */; };
+		04E175D827661D12001E0D5E /* LeaagueVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E175D727661D12001E0D5E /* LeaagueVC+Extension.swift */; };
+		04E175DA27661DD3001E0D5E /* CompetitionVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E175D927661DD3001E0D5E /* CompetitionVC+Extension.swift */; };
 		39F76925E7A4AFCD7B4797A9 /* Pods_FootballAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B21B0D4C18CEF6CB6FFC74 /* Pods_FootballAppTests.framework */; };
 		6F917819067A63A681A3A617 /* Pods_FootballApp_FootballAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E64D7DBFA9BA1B1C9F7F4E97 /* Pods_FootballApp_FootballAppUITests.framework */; };
 		FDEC20A9B925829A51B9CD00 /* Pods_FootballApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C3C5EE829D8E081E1EFD4A /* Pods_FootballApp.framework */; };
@@ -92,6 +95,9 @@
 		04E175C82765E8F4001E0D5E /* FootballAppPersistence.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootballAppPersistence.xcdatamodel; sourceTree = "<group>"; };
 		04E175CE2765EBCB001E0D5E /* FootballApp+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FootballApp+CoreDataClass.swift"; path = "/Users/mac/Desktop/DECAGON/personals/FootballApp/FootballApp/FootballApp/Model/FootballApp+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		04E175CF2765EBCB001E0D5E /* FootballApp+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FootballApp+CoreDataProperties.swift"; path = "/Users/mac/Desktop/DECAGON/personals/FootballApp/FootballApp/FootballApp/Model/FootballApp+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		04E175D527661BEA001E0D5E /* TeamVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamVC+Extension.swift"; sourceTree = "<group>"; };
+		04E175D727661D12001E0D5E /* LeaagueVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LeaagueVC+Extension.swift"; sourceTree = "<group>"; };
+		04E175D927661DD3001E0D5E /* CompetitionVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompetitionVC+Extension.swift"; sourceTree = "<group>"; };
 		374C7AB129C704D8FBE8A384 /* Pods-FootballAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballAppTests.release.xcconfig"; path = "Target Support Files/Pods-FootballAppTests/Pods-FootballAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		664348813068464D4FEEA344 /* Pods-FootballApp-FootballAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FootballApp-FootballAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-FootballApp-FootballAppUITests/Pods-FootballApp-FootballAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		88C3C5EE829D8E081E1EFD4A /* Pods_FootballApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootballApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +238,7 @@
 		04E175912763D244001E0D5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				04E175D42766193F001E0D5E /* Extension */,
 				04E1755427634FBE001E0D5E /* CompetitionViewController.swift */,
 				04E175AE2764D3D5001E0D5E /* LeagueViewController.swift */,
 				04E175C327657BE2001E0D5E /* TeamDetailsViewController.swift */,
@@ -274,6 +281,16 @@
 				04E175B72764DBE6001E0D5E /* UIExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04E175D42766193F001E0D5E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				04E175D527661BEA001E0D5E /* TeamVC+Extension.swift */,
+				04E175D727661D12001E0D5E /* LeaagueVC+Extension.swift */,
+				04E175D927661DD3001E0D5E /* CompetitionVC+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		EC7A501572CDF6FC33F82B13 /* Frameworks */ = {
@@ -539,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E175B82764DBE6001E0D5E /* UIExtensions.swift in Sources */,
+				04E175D827661D12001E0D5E /* LeaagueVC+Extension.swift in Sources */,
 				04E175AD27646C25001E0D5E /* CompetitionViewModel.swift in Sources */,
 				04E175C027656730001E0D5E /* TeamDetails.swift in Sources */,
 				04E175C92765E8F5001E0D5E /* FootballApp.xcdatamodeld in Sources */,
@@ -553,8 +571,10 @@
 				04E175A52764105C001E0D5E /* AppError.swift in Sources */,
 				04E1755127634FBE001E0D5E /* AppDelegate.swift in Sources */,
 				04E1758F2763D085001E0D5E /* CompetetionCollectionViewCell.swift in Sources */,
+				04E175DA27661DD3001E0D5E /* CompetitionVC+Extension.swift in Sources */,
 				04E175A72764105C001E0D5E /* String+Extension.swift in Sources */,
 				04E175A92764105C001E0D5E /* Route.swift in Sources */,
+				04E175D627661BEA001E0D5E /* TeamVC+Extension.swift in Sources */,
 				04E175BA2764DD21001E0D5E /* LeagueViewModel.swift in Sources */,
 				04E1755327634FBE001E0D5E /* SceneDelegate.swift in Sources */,
 				04E175C427657BE2001E0D5E /* TeamDetailsViewController.swift in Sources */,
