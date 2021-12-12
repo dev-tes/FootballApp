@@ -130,7 +130,7 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == collectionView {
-            let newVc = TeamViewController()
+            let newVc = TeamDetailViewController()
             navigationController?.pushViewController(newVc, animated: true)
         }
     }

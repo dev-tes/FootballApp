@@ -7,7 +7,12 @@
 
 import UIKit
 
-class TeamViewController: UIViewController {
+class TeamDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var leagueData: League?
+    var leagueArray: [Team]?
+    
+    var leagueViewModel = [LeagueViewModel]()
     
     private let topBackArrowButton: UIButton = {
         let button = UIButton()
@@ -209,14 +214,53 @@ class TeamViewController: UIViewController {
     
     let playersTableView: UITableView = {
         let table = UITableView()
+        table.register(PlayersTableViewCell.self, forCellReuseIdentifier: PlayersTableViewCell.identifier)
+        table.backgroundColor = .red
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 80
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
+        playersTableView.dataSource = self
+        playersTableView.delegate = self
+        title = "Arsenal"
+        navigationController?.navigationBar.isHidden = true
+        
+        
+
         constraintViews()
+        populateViews()
     }
+    
+    func populateViews() {
+        NetworkService.shared.getTeamDetails(completion: { [weak self] result in
+            
+            switch result {
+            case .success(let data):
+                
+//                self?.allCars = data
+//                self?.cars = self?.allCars?.competitions
+//
+//                self?.competitionViewModel = (self?.cars?.compactMap({
+//                    CompetitionViewModel(
+//                        id: $0.id,
+//                        leagueName: $0.name,
+//                        country: $0.area.name,
+//                        date: $0.currentSeason?.startDate ?? " "
+//                    )}))!
+//
+//                self?.brandCollectionView.reloadData()
+                
+                print(data)
+            
+            case .failure(let error):
+                print("The error: \(error.localizedDescription)")
+            }
+        })}
     
     func addSubViews(){
         view.addSubview(topBackArrowButton)
@@ -239,24 +283,30 @@ class TeamViewController: UIViewController {
         firstView.addSubview(colorsLabel)
         firstView.addSubview(colorAnswerLabel)
         view.addSubview(teamPlayersLabel)
+        view.addSubview(playersTableView)
     }
     
     func constraintViews(){
         addSubViews()
         
+        imageView.anchorWithConstantsToTop(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 40, leftConstant: 0, bottomConstant: 550, rightConstant: 0)
+        
         NSLayoutConstraint.activate([
+            
             topBackArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             topBackArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+                    
             clubDetailsLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 30),
             clubDetailsLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor),
             
             firstView.topAnchor.constraint(equalTo: clubDetailsLabel.bottomAnchor, constant: 20),
             firstView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             firstView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.90),
-            firstView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            firstView.heightAnchor.constraint(equalToConstant: 280),
             
             foundedLabel.topAnchor.constraint(equalTo: firstView.topAnchor, constant: 10),
             foundedLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor, constant: 10),
@@ -310,15 +360,36 @@ class TeamViewController: UIViewController {
             colorAnswerLabel.leadingAnchor.constraint(equalTo: foundedAnswerLabel.leadingAnchor),
             
             teamPlayersLabel.topAnchor.constraint(equalTo: firstView.bottomAnchor, constant: 10),
-            teamPlayersLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor)
+            teamPlayersLabel.leadingAnchor.constraint(equalTo: firstView.leadingAnchor),
+            
+            playersTableView.topAnchor.constraint(equalTo: teamPlayersLabel.bottomAnchor, constant: 10),
+            playersTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playersTableView.widthAnchor.constraint(equalTo: firstView.widthAnchor),
+//            playersTableView.heightAnchor.constraint(equalTo: firstView.heightAnchor, constant: 50),
+            playersTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        imageView.anchorWithConstantsToTop(top: titleLabel.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 40, leftConstant: 0, bottomConstant: 500, rightConstant: 0)
+        
     }
     
     
     @objc func didTapTopBackArrowButton() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.identifier, for: indexPath)
+        cell.backgroundColor = .black
+//        cell.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        cell.layer.borderWidth = 1
+//        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 10
+//        cell.layer.masksToBounds = true
+        return cell
     }
 
 }

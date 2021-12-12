@@ -23,7 +23,6 @@ class LeagueCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
-        //        setUp()
     }
     
     required init?(coder: NSCoder) {
