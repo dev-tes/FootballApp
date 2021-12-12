@@ -10,13 +10,11 @@ import SVGKit
 
 class TeamDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: Properties
     var clubDetails: APIResponse?
     var squad: [Squad]?
-    
     var teamViewModel: TeamViewModel?
     var playersViewModel: [PlayerViewModel]?
-    
-    
     var urlString = " "
     
     let topView: UIView = {
@@ -217,6 +215,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         return table
     }()
     
+    // MARK: View Lifecycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
@@ -228,6 +227,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         populateViews()
     }
     
+    // MARK: Back arrow button function
     @objc func didTapTopBackArrowButton() {
         navigationController?.popViewController(animated: true)
     }
