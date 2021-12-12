@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="FootballCompetition" representedClassName="FootballCompetition" syncable="YES">
+    <entity name="FootballApp" representedClassName="FootballApp" syncable="YES">
         <attribute name="country" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="leagueName" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="FootballCompetition" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="FootballApp" positionX="-36" positionY="9" width="128" height="89"/>
     </elements>
 </model>

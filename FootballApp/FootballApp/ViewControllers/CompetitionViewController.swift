@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class CompetitionViewController: UIViewController {
+    let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
     var allCars: CompetitionResponse?
     var cars: [Compete]?
+    var persistedData: [FootballApp]?
     
     var competitionViewModel = [CompetitionViewModel]()
     
@@ -42,6 +45,7 @@ class CompetitionViewController: UIViewController {
         
         addDefaultViews()
         populateCompetitionCollectionView()
+        fetchPersistedData()
     }
     
     // MARK: - SETUP VIEWS FUNCTION
@@ -59,6 +63,18 @@ class CompetitionViewController: UIViewController {
 
 extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func fetchPersistedData() {
+        do {
+            self.persistedData = try context?.fetch(FootballApp.fetchRequest())
+            DispatchQueue.main.async {
+                self.brandCollectionView.reloadData()
+            }
+        }
+        catch {
+            
+        }
+    }
+    
     func populateCompetitionCollectionView() {
         NetworkService.shared.getAllCompetitions(completion: { [weak self] result in
             
@@ -68,17 +84,50 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
                 self?.allCars = data
                 self?.cars = self?.allCars?.competitions
                 
-                self?.competitionViewModel = (self?.cars?.compactMap({
+                self?.persistedData = (self?.cars?.compactMap({
+                    let newPersistenceData = FootballApp(context: self?.context ?? NSManagedObjectContext())
+
+                    newPersistenceData.id = Int32($0.id)
+                    newPersistenceData.leagueName = $0.name
+                    newPersistenceData.country = $0.area.name
+                    newPersistenceData.startDate = $0.currentSeason?.startDate
+                    
+                    do {
+                        try self?.context?.save()
+                    }
+                    catch {
+                        
+                    }
+                    self?.fetchPersistedData()
+                    return newPersistenceData
+                }))!
+                
+                self?.competitionViewModel = (self?.persistedData?.compactMap({
                     CompetitionViewModel(
                         id: $0.id,
-                        leagueName: $0.name,
-                        country: $0.area.name,
-                        date: $0.currentSeason?.startDate ?? " "
+                        leagueName: $0.leagueName ?? "Premier League ",
+                        country: $0.country ?? "England",
+                        date: $0.startDate ?? "11 May, 2019"
                     )}))!
                 
                 self?.brandCollectionView.reloadData()
             
             case .failure(let error):
+                
+                // configure our viewmodel with what is in persistence
+                self?.competitionViewModel = (self?.persistedData?.compactMap({
+                    CompetitionViewModel(
+                        id: $0.id,
+                        leagueName: $0.leagueName ?? "Premier League ",
+                        country: $0.country ?? "England",
+                        date: $0.startDate ?? "11 May, 2019"
+                    )
+                }))!
+                
+                //display it
+                DispatchQueue.main.async {
+                    self?.brandCollectionView.reloadData()
+                }
                 print("The error: \(error.localizedDescription)")
             }
         })}

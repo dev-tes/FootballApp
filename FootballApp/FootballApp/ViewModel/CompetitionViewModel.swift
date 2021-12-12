@@ -8,12 +8,12 @@
 import Foundation
 
 class CompetitionViewModel{
-    let id: Int
+    let id: Int32
     let leagueName: String
     let country: String
     let date: String
     
-    init(id: Int,leagueName: String, country: String,date: String){
+    init(id: Int32,leagueName: String, country: String,date: String){
         self.id = id
         self.leagueName = leagueName
         self.country = country
