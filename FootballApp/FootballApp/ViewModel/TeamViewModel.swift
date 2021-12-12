@@ -43,7 +43,7 @@ class TeamViewModel{
     }
 }
 
-class playerViewModel{
+class PlayerViewModel{
     
     let playerName, position: String
     let dateOfBirth: String

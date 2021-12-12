@@ -70,36 +70,49 @@ class PlayersTableViewCell: UITableViewCell {
         contentView.addSubview(dobLabel)
         setUpViews()
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
 
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
-        contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+    
+    public func display(with viewModel: Squad) {
+        playerNameLabel.text = viewModel.name
+        positionLabel.text = viewModel.position
+        countryLabel.text = viewModel.countryOfBirth
+        dobLabel.text = viewModel.dateOfBirth
+    }
+    
+    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+////        contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+//    }
+    
+    public func configure(with viewModel: PlayerViewModel) {
+        playerNameLabel.text = viewModel.playerName
+        positionLabel.text = viewModel.position
+        countryLabel.text = viewModel.countryOfBirth
+        dobLabel.text = viewModel.dateOfBirth
     }
     
     func setUpViews() {
         NSLayoutConstraint.activate([
             imageViews.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             imageViews.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            imageViews.heightAnchor.constraint(equalToConstant: 60),
+            imageViews.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            imageViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
             playerNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             playerNameLabel.leadingAnchor.constraint(equalTo: imageViews.trailingAnchor, constant: 10),
-//            playerNameLabel.heightAnchor.constraint(equalToConstant: 50),
             
             positionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             positionLabel.leadingAnchor.constraint(equalTo: playerNameLabel.leadingAnchor),
-//            positionLabel.heightAnchor.constraint(equalToConstant: 30),
 
 
             countryLabel.topAnchor.constraint(equalTo: playerNameLabel.topAnchor),
             countryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-//            countryLabel.heightAnchor.constraint(equalToConstant: 30),
 
             
             dobLabel.topAnchor.constraint(equalTo: positionLabel.topAnchor),
             dobLabel.trailingAnchor.constraint(equalTo: countryLabel.trailingAnchor),
-//            dobLabel.heightAnchor.constraint(equalToConstant: 30),
 
         ])
     }

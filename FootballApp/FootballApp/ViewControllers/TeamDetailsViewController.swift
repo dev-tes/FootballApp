@@ -11,11 +11,11 @@ import SVGKit
 class TeamDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var clubDetails: APIResponse?
-    var playersDetaails: [Squad]?
+    var squad: [Squad]?
     
     var teamViewModel: TeamViewModel?
+    var playersViewModel: [PlayerViewModel]?
     
-    var arrayOfResponse: [APIResponse]?
     
     var urlString = " "
     
@@ -223,7 +223,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         table.backgroundColor = .red
         table.translatesAutoresizingMaskIntoConstraints = false
         table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 80
+//        table.estimatedRowHeight = 80
         return table
     }()
     
@@ -234,7 +234,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         playersTableView.delegate = self
         title = "Arsenal"
         navigationController?.navigationBar.isHidden = true
-        
         
         
         constraintViews()
@@ -248,25 +247,9 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
             case .success(let data):
                 
                 self?.clubDetails = data
+                self?.squad = self?.clubDetails?.squad
                 
-                print(self?.clubDetails?.name)
-                print(self?.arrayOfResponse)
-                
-                TeamViewModel(
-                    name : self?.clubDetails?.name ?? "Arsenal",
-                    shortName : self?.clubDetails?.shortName ?? "M'gladbach",
-                    tla : self?.clubDetails?.tla ?? "Arsenal",
-                    crestURL : self?.clubDetails?.crestURL ?? "Arsenal",
-                    address :  self?.clubDetails?.address ?? "London",
-                    phone :  self?.clubDetails?.phone ?? "+234 9000000000",
-                    website : self?.clubDetails?.website ?? "arsenal.com",
-                    email : self?.clubDetails?.email ?? "arsenal@gmail.com",
-                    founded : self?.clubDetails?.founded ?? 2002,
-                    clubColors : self?.clubDetails?.clubColors ?? "white/red",
-                    venue : self?.clubDetails?.venue ?? "London"
-                )
-                
-                print(self?.teamViewModel?.name)
+                self?.playersTableView.reloadData()
                 
                 self?.foundedAnswerLabel.text = String(self?.clubDetails?.founded ?? 2002)
                 self?.nickAnswerLabel.text = self?.clubDetails?.shortName ?? "2002"
@@ -411,14 +394,17 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return squad?.count ?? 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.identifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.identifier, for: indexPath) as? PlayersTableViewCell else { return UITableViewCell() }
         cell.backgroundColor = .black
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 10
+        if let viewModel = squad {
+            cell.display(with: (squad?[indexPath.row]) as! Squad )
+        }
         return cell
     }
     
