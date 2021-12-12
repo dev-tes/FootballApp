@@ -46,7 +46,7 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "house")
+        imageView.image = UIImage(systemName: " ")
         imageView.backgroundColor = .systemRed
         imageView.contentMode = .scaleAspectFit
         return imageView
