@@ -25,7 +25,6 @@ class PlayersTableViewCell: UITableViewCell {
         label.text = "Player name"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -35,7 +34,6 @@ class PlayersTableViewCell: UITableViewCell {
         label.text = "Position"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -45,7 +43,8 @@ class PlayersTableViewCell: UITableViewCell {
         label.text = "Country"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
+        label.textColor = .systemGreen
+        label.backgroundColor = .systemGray6
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -55,7 +54,6 @@ class PlayersTableViewCell: UITableViewCell {
         label.text = "Date of birth"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -82,7 +80,7 @@ class PlayersTableViewCell: UITableViewCell {
     
 //    override func layoutSubviews() {
 //        super.layoutSubviews()
-////        contentView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+////        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
 //    }
     
     public func configure(with viewModel: PlayerViewModel) {

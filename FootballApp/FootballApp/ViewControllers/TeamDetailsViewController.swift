@@ -52,15 +52,14 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Club Details"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
-        //        label.textAlignment = .center
+        label.textColor = .systemGreen
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let firstView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGray
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -70,7 +69,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Founded:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -80,7 +78,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Nickname:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -90,7 +87,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Address:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -100,7 +96,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Phone Number:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -110,7 +105,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Website:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -120,7 +114,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Email Address:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -130,7 +123,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Club colors:"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -140,7 +132,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "2021"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -150,7 +141,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "M'gladbach"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -160,7 +150,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Hennes-Weismer-Allee 1 Monchen gladbach 41179"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 16)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -170,7 +159,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "+234 9032890587"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -180,7 +168,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "https://profile-tesweb.vercel.app/"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -190,7 +177,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "www.borussia.de"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -200,7 +186,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Green, Orange, Yellow"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 18)
-        label.textColor = .white
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -211,8 +196,8 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         label.text = "Team Players"
         label.numberOfLines = 2
         label.font = UIFont(name: "Helvetica", size: 20)
-        label.textColor = .white
         label.textAlignment = .left
+        label.textColor = .systemGreen
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -220,16 +205,14 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     let playersTableView: UITableView = {
         let table = UITableView()
         table.register(PlayersTableViewCell.self, forCellReuseIdentifier: PlayersTableViewCell.identifier)
-        table.backgroundColor = .red
+        table.backgroundColor = .systemGray6
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.rowHeight = UITableView.automaticDimension
-//        table.estimatedRowHeight = 80
         return table
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .systemGray6
         playersTableView.dataSource = self
         playersTableView.delegate = self
         title = "Arsenal"
@@ -399,9 +382,9 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PlayersTableViewCell.identifier, for: indexPath) as? PlayersTableViewCell else { return UITableViewCell() }
-        cell.backgroundColor = .black
-        cell.layer.borderWidth = 1
+        cell.backgroundColor = .white
         cell.layer.cornerRadius = 10
+        cell.selectionStyle = .none
         if let viewModel = squad {
             cell.display(with: (squad?[indexPath.row]) as! Squad )
         }
