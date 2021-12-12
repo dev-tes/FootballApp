@@ -73,7 +73,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell {
             
             startDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             startDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-
+            
             dateLabel.topAnchor.constraint(equalTo: startDateLabel.topAnchor, constant: 2),
             dateLabel.leadingAnchor.constraint(equalTo: startDateLabel.trailingAnchor, constant: 3),
         ])
@@ -84,7 +84,6 @@ class CompetitionCollectionViewCell: UICollectionViewCell {
         countryLabel.text = viewModel.country
         dateLabel.text = viewModel.date
     }
-
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

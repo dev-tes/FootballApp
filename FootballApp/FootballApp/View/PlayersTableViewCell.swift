@@ -68,7 +68,7 @@ class PlayersTableViewCell: UITableViewCell {
         contentView.addSubview(dobLabel)
         setUpViews()
     }
-
+    
     
     public func display(with viewModel: Squad) {
         playerNameLabel.text = viewModel.name
@@ -76,12 +76,6 @@ class PlayersTableViewCell: UITableViewCell {
         countryLabel.text = viewModel.countryOfBirth
         dobLabel.text = viewModel.dateOfBirth
     }
-    
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-////        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
-//    }
     
     public func configure(with viewModel: PlayerViewModel) {
         playerNameLabel.text = viewModel.playerName
@@ -103,15 +97,15 @@ class PlayersTableViewCell: UITableViewCell {
             
             positionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             positionLabel.leadingAnchor.constraint(equalTo: playerNameLabel.leadingAnchor),
-
-
+            
+            
             countryLabel.topAnchor.constraint(equalTo: playerNameLabel.topAnchor),
             countryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-
+            
             
             dobLabel.topAnchor.constraint(equalTo: positionLabel.topAnchor),
             dobLabel.trailingAnchor.constraint(equalTo: countryLabel.trailingAnchor),
-
+            
         ])
     }
     

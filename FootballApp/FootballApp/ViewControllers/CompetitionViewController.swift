@@ -17,6 +17,24 @@ class CompetitionViewController: UIViewController {
     
     var competitionViewModel = [CompetitionViewModel]()
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Competitions"
+        label.numberOfLines = 2
+        label.font = UIFont(name: "Helvetica", size: 20)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let firstView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var brandCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -32,18 +50,15 @@ class CompetitionViewController: UIViewController {
         collectionView.register(CompetitionCollectionViewCell.self, forCellWithReuseIdentifier: CompetitionCollectionViewCell.identifier)
         collectionView.isUserInteractionEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.frame = view.bounds
         collectionView.backgroundColor = .systemGray6
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray
-        title = "Competitions"
-        navigationController?.navigationBar.backgroundColor = .green
-        
+        view.backgroundColor = .systemGreen
         addDefaultViews()
+        navigationController?.isNavigationBarHidden = true
         populateCompetitionCollectionView()
         fetchPersistedData()
     }
@@ -51,13 +66,22 @@ class CompetitionViewController: UIViewController {
     // MARK: - SETUP VIEWS FUNCTION
     func addDefaultViews() {
         view.addSubview(brandCollectionView)
-//        constraintCollectionView()
+        view.addSubview(titleLabel)
+        view.addSubview(firstView)
+        constraintCollectionView()
     }
     
     func constraintCollectionView() {
-        brandCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        brandCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        brandCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive = true
+        
+        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        firstView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+        firstView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        firstView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        firstView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        brandCollectionView.anchorWithConstantsToTop(top: firstView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0)
     }
 }
 
@@ -86,7 +110,7 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
                 
                 self?.persistedData = (self?.cars?.compactMap({
                     let newPersistenceData = FootballApp(context: self?.context ?? NSManagedObjectContext())
-
+                    
                     newPersistenceData.id = Int32($0.id)
                     newPersistenceData.leagueName = $0.name
                     newPersistenceData.country = $0.area.name
@@ -96,12 +120,10 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
                         try self?.context?.save()
                     }
                     catch {
-                        
                     }
                     self?.fetchPersistedData()
                     return newPersistenceData
                 }))!
-                
                 self?.competitionViewModel = (self?.persistedData?.compactMap({
                     CompetitionViewModel(
                         id: $0.id,
@@ -111,10 +133,10 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
                     )}))!
                 
                 self?.brandCollectionView.reloadData()
-            
+                
             case .failure(let error):
                 
-                // configure our viewmodel with what is in persistence
+                // MARK:  configure our viewmodel with what is in persistence
                 self?.competitionViewModel = (self?.persistedData?.compactMap({
                     CompetitionViewModel(
                         id: $0.id,
@@ -124,7 +146,7 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
                     )
                 }))!
                 
-                //display it
+                // MARK: display it
                 DispatchQueue.main.async {
                     self?.brandCollectionView.reloadData()
                 }
@@ -149,5 +171,4 @@ extension CompetitionViewController: UICollectionViewDelegate, UICollectionViewD
             navigationController?.pushViewController(newVc, animated: true)
         }
     }
-    
 }

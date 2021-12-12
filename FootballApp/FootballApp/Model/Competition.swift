@@ -5,32 +5,6 @@
 //  Created by  Tes on 11/12/2021.
 //
 
-//import Foundation
-//
-//// MARK: - APIResponse
-//struct CompetitionResponse: Codable {
-//    let competitions: [Competition]
-//}
-//
-//// MARK: - Competition
-//struct Competition: Codable {
-//    let id: Int
-//    let area: Area
-//    let name: String
-//    let currentSeason: CurrentSeason
-//}
-//
-//// MARK: - Area
-//struct Area: Codable {
-//    let id: Int
-//    let name: String
-//}
-//
-//// MARK: - CurrentSeason
-//struct CurrentSeason: Codable {
-//    let startDate: String
-//}
-
 import Foundation
 
 
@@ -51,7 +25,7 @@ struct Compete: Codable {
     let currentSeason: CurrentSeason?
     let numberOfAvailableSeasons: Int
     let lastUpdated: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, area, name, code
         case emblemURL = "emblemUrl"
@@ -64,7 +38,7 @@ struct Are: Codable {
     let id: Int
     let name, countryCode: String
     let ensignURL: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, countryCode
         case ensignURL = "ensignUrl"
@@ -85,7 +59,7 @@ struct Winner: Codable {
     let name: String
     let shortName, tla: String?
     let crestURL: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, shortName, tla
         case crestURL = "crestUrl"

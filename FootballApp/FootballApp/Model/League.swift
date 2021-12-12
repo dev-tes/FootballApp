@@ -17,7 +17,7 @@ struct Team: Codable {
     let id: Int
     let area: Area
     let crestURL: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, area
         case crestURL = "crestUrl"

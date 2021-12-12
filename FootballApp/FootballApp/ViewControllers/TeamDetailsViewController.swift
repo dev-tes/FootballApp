@@ -19,6 +19,13 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     var urlString = " "
     
+    let topView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGreen
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let topBackArrowButton: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(didTapTopBackArrowButton), for: .touchUpInside)
@@ -263,11 +270,12 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         })}
     
     func addSubViews(){
-        view.addSubview(topBackArrowButton)
-        view.addSubview(titleLabel)
+        topView.addSubview(topBackArrowButton)
+        topView.addSubview(titleLabel)
         view.addSubview(imageView)
         view.addSubview(clubDetailsLabel)
         view.addSubview(firstView)
+        view.addSubview(topView)
         firstView.addSubview(foundedLabel)
         firstView.addSubview(foundedAnswerLabel)
         firstView.addSubview(nicknameLabel)
@@ -289,12 +297,17 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
     func constraintViews(){
         addSubViews()
         
-        imageView.anchorWithConstantsToTop(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 40, leftConstant: 0, bottomConstant: 550, rightConstant: 0)
+        imageView.anchorWithConstantsToTop(top: titleLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 550, rightConstant: 0)
         
         NSLayoutConstraint.activate([
             
-            topBackArrowButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            topBackArrowButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            topView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
+            topView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 100),
+            
+            topBackArrowButton.topAnchor.constraint(equalTo: titleLabel.topAnchor),
+            topBackArrowButton.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 20),
             
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -371,7 +384,6 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
-    
     @objc func didTapTopBackArrowButton() {
         navigationController?.popViewController(animated: true)
     }
@@ -390,5 +402,4 @@ class TeamDetailViewController: UIViewController, UITableViewDataSource, UITable
         }
         return cell
     }
-    
 }

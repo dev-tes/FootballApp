@@ -2,7 +2,7 @@
 //  FootballApp+CoreDataClass.swift
 //  
 //
-//  Created by  Decagon on 12/12/2021.
+//  Created by  Tes on 12/12/2021.
 //
 //
 

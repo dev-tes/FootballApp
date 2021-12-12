@@ -54,7 +54,6 @@ struct NetworkService {
     private func handleResponse<T: Decodable>(result: Result<Data, Error>?, completion: (Result<T, Error>) -> Void) {
         guard let result = result else {
             completion(.failure(NetworkingError.unknownError))
-            
             return
         }
         
@@ -82,8 +81,6 @@ struct NetworkService {
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue(apiKey, forHTTPHeaderField: "X-Auth-Token")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        
         urlRequest.httpMethod = method.rawValue
         
         if let params = parameters {
@@ -99,5 +96,4 @@ struct NetworkService {
         }
         return urlRequest
     }
-
 }

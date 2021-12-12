@@ -14,7 +14,6 @@ enum Route {
     case teams
     case teamDetail
     
-    
     var description: String {
         switch self {
         case .competition:

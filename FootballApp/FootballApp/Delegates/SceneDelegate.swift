@@ -16,7 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let rootViewCOntroller = CompetitionViewController()
-//        let rootViewCOntroller = TeamDetailViewController()
 
         
         let navigationController = UINavigationController(rootViewController: rootViewCOntroller)

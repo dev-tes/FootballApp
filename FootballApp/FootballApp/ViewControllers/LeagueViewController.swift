@@ -9,11 +9,8 @@ import UIKit
 
 class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var leagueData: League?
     var leagueArray: [Team]?
-    
     var leagueViewModel = [LeagueViewModel]()
     
     private let topBackArrowButton: UIButton = {
@@ -46,7 +43,6 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
         view.backgroundColor = .systemGreen
         setupCollectionView()
         setConstraint()
-//        getAllItems()
         populateCompetitionCollectionView()
         navigationController?.navigationBar.isHidden = true
     }
@@ -67,7 +63,7 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
                     )}))!
                 
                 self?.leagueCollectionView?.reloadData()
-            
+                
             case .failure(let error):
                 print("The error: \(error.localizedDescription)")
             }
@@ -89,7 +85,6 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(collectionView)
-        //        collectionView.frame = CGRect(x: 10, y: view.frame.size.height-50, width: view.frame.size.width-10, height: 50)
     }
     
     func setConstraint() {
@@ -134,5 +129,4 @@ class LeagueViewController: UIViewController, UICollectionViewDelegate, UICollec
             navigationController?.pushViewController(newVc, animated: true)
         }
     }
-    
 }
